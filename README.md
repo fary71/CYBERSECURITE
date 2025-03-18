@@ -50,3 +50,11 @@ Pour utiliser l'application, suivez ces étapes :
    ```bash
    git clone https://github.com/votre-utilisateur/techsecure-encryption-app.git
    cd techsecure-encryption-app
+
+
+# **Licence**
+Ce projet est sous licence [MIT](LICENSE).
+
+## **Contact**
+Pour toute question, veuillez contacter :
+[marieneikhafinis@gmail.com][evaalcin026@gmail.com][farahpierre788@gmail.com][larahjanef@gmail.com]

@@ -1,28 +1,68 @@
-document.getElementById('encryptButton').addEventListener('click', encrypt);
-document.getElementById('decryptButton').addEventListener('click', decrypt);
+javascript
+async function encryptMessage(message, key) {
+const encodedKey = new TextEncoder().encode(key);
+const cryptoKey = await window.crypto.subtle.importKey(
+"raw",
+encodedKey,
+{ name: "AES-CBC" },
+false,
+["encrypt"]
+);
 
-function encrypt() {
-    const message = document.getElementById('message').value;
-    const key = parseInt(document.getElementById('key').value);
-    const result = caesarCipher(message, key);
-    document.getElementById('result').innerText = result;
+const iv = window.crypto.getRandomValues(new Uint8Array(16));
+const encodedMessage = new TextEncoder().encode(message);
+const encryptedMessage = await window.crypto.subtle.encrypt(
+{ name: "AES-CBC", iv: iv },
+cryptoKey,
+encodedMessage
+);
+
+return {
+iv: Array.from(iv),
+data: Array.from(new Uint8Array(encryptedMessage))
+};
 }
 
-function decrypt() {
-    const message = document.getElementById('result').innerText;
-    const key = parseInt(document.getElementById('key').value);
-    const result = caesarCipher(message, -key);
-    document.getElementById('result').innerText = result;
+async function decryptMessage(encryptedData, key, iv) {
+const encodedKey = new TextEncoder().encode(key);
+const cryptoKey = await window.crypto.subtle.importKey(
+"raw",
+encodedKey,
+{ name: "AES-CBC" },
+false,
+["decrypt"]
+);
+
+const decryptedMessage = await window.crypto.subtle.decrypt(
+{ name: "AES-CBC", iv: new Uint8Array(iv) },
+cryptoKey,
+new Uint8Array(encryptedData)
+);
+
+return new TextDecoder().decode(decryptedMessage);
 }
 
-function caesarCipher(str, shift) {
-    return str.split('').map(char => {
-        const code = char.charCodeAt(0);
-        if (code >= 65 && code <= 90) {
-            return String.fromCharCode(((code - 65 + shift) % 26 + 26) % 26 + 65);
-        } else if (code >= 97 && code <= 122) {
-            return String.fromCharCode(((code - 97 + shift) % 26 + 26) % 26 + 97);
-        }
-        return char;
-    }).join('');
+document.getElementById('encryptBtn').addEventListener('click', async () => {
+const message = document.getElementById('message').value;
+const key = document.getElementById('key').value;
+
+if (message && key) {
+const { iv, data } = await encryptMessage(message, key);
+document.getElementById('result').innerText = `Chiffré : ${JSON.stringify({ iv, data })}`;
+} else {
+alert('Veuillez entrer un message et une clé.');
 }
+});
+
+document.getElementById('decryptBtn').addEventListener('click', async () => {
+const key = document.getElementById('key').value;
+const resultText = document.getElementById('result').innerText;
+
+if (key && resultText) {
+const { iv, data } = JSON.parse(resultText.replace('Chiffré : ', ''));
+const decrypted = await decryptMessage(data, key, iv);
+document.getElementById('result').innerText = `Déchiffré : ${decrypted}`;
+} else {
+alert('Veuillez entrer une clé et avoir un résultat à déchiffrer.');
+}
+});

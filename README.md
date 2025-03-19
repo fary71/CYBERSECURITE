@@ -43,14 +43,28 @@ L'application comprend les fonctionnalités suivantes :
 - **Code Commenté** :
   - Le code JavaScript est soigneusement commenté pour expliquer chaque étape de la logique de chiffrement, facilitant ainsi la compréhension et la maintenance.
 
-## Installation et Utilisation
-Pour utiliser l'application, cliquer sur le lien suivant : 
 
-https://fary71.github.io/CYBERSECURITE/
+## Installation-Déploiement
+
+Cette application est déployée sur GitHub Pages. Vous pouvez y accéder à l'adresse suivante :
+
+[https://fary71.github.io/CYBERSECURITE/]
+
+
+
+## Utilisation
+
+1. Apres avoir cliquer sur le lien qui vous dirigera sur l'application.
+2. Entrez le message que vous souhaitez chiffrer dans le champ prévu à cet effet.
+3. Saisissez une clé de chiffrement dans le champ correspondant.
+4. Cliquez sur le bouton **Chiffrer** pour obtenir le message chiffré.
+5. Pour déchiffrer un message, collez le résultat chiffré dans le champ prévu, entrez la même clé et cliquez sur **Déchiffrer**.
 
 
 # **Licence**
 Ce projet est sous licence [MIT](LICENSE).
+
+
 
 ## **Contact**
 Pour toute question, veuillez contacter :

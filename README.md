@@ -44,12 +44,9 @@ L'application comprend les fonctionnalités suivantes :
   - Le code JavaScript est soigneusement commenté pour expliquer chaque étape de la logique de chiffrement, facilitant ainsi la compréhension et la maintenance.
 
 ## Installation et Utilisation
-Pour utiliser l'application, suivez ces étapes :
+Pour utiliser l'application, cliquer sur le lien suivant : 
 
-1. **Clonez le Dépôt** :
-   ```bash
-   git clone https://github.com/votre-utilisateur/techsecure-encryption-app.git
-   cd techsecure-encryption-app
+https://fary71.github.io/CYBERSECURITE/
 
 
 # **Licence**
